@@ -5,14 +5,16 @@
         <img class="img1" src="../assets/images/18.png">
       </div>
       <div class="right flex-pack-justify flex">
-        <router-link :to="{ path: '/trains/home'}">首页</router-link>
-        <router-link :to="{ path: '/trains/home'}">发布课程</router-link>
+        <a href="http://www.heermengsport.com/">首页</a>
+        <router-link :to="{ path: '/home'}">发布培训</router-link>
         <span v-if="show">
-          <!-- <a href="javascript:;">注册</a>&nbsp;<span class="line">|</span>&nbsp; --><router-link :to="{ path: '/trains/login'}">登陆</router-link>
+          <!-- <router-link :to="{ path: '/login', params:{ fromId: 2 }}">登录</router-link> -->
+          <span @click="toLogin" style="cursor: pointer;">登录</span>
         </span>
         <span class="yetLogin" v-else>
           <img src="../assets/images/10.png">
           <span>{{ name }}</span>
+          <span @click.stop="outLogin" style="margin-left:20px;cursor: pointer;">退出</span>
         </span>
       </div>
     </div>
@@ -36,7 +38,11 @@
     },
     methods: {
       toLogin () {
-        this.$router.push({ name: 'login' })
+        this.$router.push({ name: 'login', params:{ fromId: 2 } })
+      },
+      outLogin () {
+        window.localStorage.removeItem('hlm_l_r')
+        location.href = location.href
       }
     },
     mounted () {
@@ -47,7 +53,7 @@
     }
   }
 </script>
-<style scoped>
+<style>
   .topnav{
     height: 80px;
     border-bottom: 1px solid #eee; 
@@ -62,7 +68,6 @@
     height: 80px;
     background: url(../assets/images/88e643b27f0b9b11bede98f8fa8c2ea7.png) no-repeat;
     background-position-y: bottom;
-    margin-left: -320px;
   }
   .img1{
     height: 50px;

@@ -19,7 +19,13 @@ export default {
       state: ''
     }
   },
+  props:['addrs'],
   created () {
+    // console.log(1111)
+    // console.log(this.addrs)
+    // this.geocoders(this.addrs)
+    // if(this.addrs){
+    // }
     bus.$on('address', (val) => {
       this.geocoders(val)
     })
@@ -118,6 +124,11 @@ export default {
             // document.getElementById('nearestPOI').innerHTML = positionResult.nearestPOI;
             bus.$emit('getAddress', positionResult.nearestPOI)
             bus.$emit('lnglat', positionResult.position)
+            var objs = {
+              poi: positionResult.nearestPOI,
+              pos: positionResult.position
+            }
+            self.$emit('get-info', objs)
         });
         positionPicker.on('fail', function(positionResult) {
             // self.error()

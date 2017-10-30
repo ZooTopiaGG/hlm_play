@@ -31,6 +31,7 @@ AMap.initAMapApiLoader({
 const routes = rt
 const router = new VueRouter({
   mode:'history',
+  base: 'trains',
   scrollBehavior (to, from, savedPosition) {
       // return 期望滚动到哪个的位置
       if(savedPosition){
@@ -82,7 +83,7 @@ axios.interceptors.response.use(function(res){
 
   // loadingInstance.close()
   Message.error({
-    message: '系统繁忙，请稍后重试'
+    message: err.response.data.message
   })
   //Do something with response error
   return Promise.reject(err)

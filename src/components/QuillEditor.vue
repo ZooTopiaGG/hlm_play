@@ -32,7 +32,8 @@
               ['image', 'link','code-block']
             ],
           },
-          themes: 'snow'
+          theme: 'snow',
+          placeholder: '请输入内容'
         }
       }
     },
